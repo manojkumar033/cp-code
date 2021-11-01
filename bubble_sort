@@ -1,0 +1,13 @@
+void sort(int arr[], int i, int n)
+{
+    if (i == n)
+        return;
+    if (arr[i] > arr[i + 1])
+    {
+        int temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+    }
+    sort(arr, i + 1, n);
+    sort(arr, i, n - 1);
+}
