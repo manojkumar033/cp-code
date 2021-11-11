@@ -1,0 +1,37 @@
+
+void merge(int arr[], int l, int r)
+{
+    int mid = (l + r) / 2;
+    int a[r];
+    int i = l, j = mid + 1, k = 0;
+    while (i <= mid && j <= r)
+    {
+        if (arr[i] < arr[j])
+            a[k++] = arr[i++];
+        else
+            a[k++] = arr[j++];
+    }
+    while (i <= mid)
+    {
+        a[k++] = arr[i++];
+    }
+    while (j <= r)
+    {
+        a[k++] = arr[j++];
+    }
+    for (int m = l, n = 0; m <= r; n++, m++)
+    {
+        arr[m] = a[n];
+    }
+}
+
+void rec(int arr[], int l, int r)
+{
+    // cout << l << r;
+    if (l >= r)
+        return;
+    int mid = (l + r) / 2;
+    rec(arr, l, mid);
+    rec(arr, mid + 1, r);
+    merge(arr, l, r);
+}
