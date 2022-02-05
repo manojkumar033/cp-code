@@ -1,9 +1,10 @@
-//@ author : manoj kumar
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
 #define vi vector<int>
 #define pb push_back
+#define pq priority_queue
+#define map map<int, int>
 #define floop(i, a, b) for (int i = a; i < b; i++)
 std::vector<int> arry(int n)
 {
