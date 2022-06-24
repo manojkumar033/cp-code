@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+#define vi vector<int>
+#define pb push_back
+#define pq priority_queue
+// #define map map<int, int>
+#define floop(i, a, b) for (int i = a; i < b; i++)
+std::vector<int> arry(int n)
+{
+    std::vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+    return v;
+}
+void Print(vi vec)
+{
+    for (int i = 0; i < vec.size(); i++)
+    {
+        cout << vec[i] << " ";
+    }
+}
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// structure for genric tree
+class TreeNode
+{
+public:
+    int data;
+    vector<TreeNode *> children;
+    TreeNode(int data)
+    {
+        this->data = data;
+    }
+};
+
+// construct genric tree
+TreeNode *construct_tree(vector<int> &arr)
+{
+    map<int, vector<int>> mp;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        mp[arr[i]].push_back(i + 1);
+    }
+    queue<TreeNode *> q;
+    vector<int> v = mp[-1];
+    TreeNode *root = new TreeNode(v[0]);
+    q.push(root);
+    while (q.size() > 0)
+    {
+        TreeNode *n = q.front();
+        q.pop();
+        for (auto it : mp[n->data])
+        {
+            TreeNode *temp = new TreeNode(it);
+            n->children.push_back(temp);
+            q.push(temp);
+        }
+    }
+    return root;
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+    vector<int> p(n, 0);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> p[i];
+    }
+    TreeNode *root = construct_tree(p);
+}
+
+////////////////////////////////////////////////////////////
+main()
+{
+
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    //     solve();
+    // }
+    solve();
+    return 0;
+}
